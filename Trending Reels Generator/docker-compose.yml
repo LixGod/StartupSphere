@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  trendlyzer-app:
+    build: .
+    container_name: trendlyzer-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - GROQ_API_KEY=${GROQ_API_KEY}
+    env_file:
+      - .env
+    restart: unless-stopped
+    volumes:
+      - ./.next:/app/.next
+      - ./public:/app/public

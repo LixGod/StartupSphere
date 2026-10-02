@@ -1,0 +1,20 @@
+# Development Dockerfile
+FROM node:24-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package.json package-lock.json* pnpm-lock.yaml* ./
+
+# Install dependencies
+RUN npm install
+
+# Copy application files
+COPY . .
+
+# Expose the Next.js port
+EXPOSE 3000
+
+# Start the development server
+CMD ["npm", "run", "dev"]
